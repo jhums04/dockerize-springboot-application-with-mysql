@@ -22,7 +22,7 @@ public class PersonMapper {
     public static PersonDTO personDataToDTO(PersonData personData) {
         PersonDTO personDTO = new PersonDTO();
         personDTO.setAge(personData.getAge());
-        personDTO.setFirstName(personDTO.getFirstName());
+        personDTO.setFirstName(personData.getFirstName());
         personDTO.setLastName(personData.getLastName());
         personDTO.setId(personData.getId());
         return personDTO;
