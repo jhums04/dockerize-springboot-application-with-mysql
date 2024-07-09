@@ -4,9 +4,7 @@ import com.springboot_mysql_dockerize.dockerize_springboot_with_mysql.model.dto.
 import com.springboot_mysql_dockerize.dockerize_springboot_with_mysql.service.PersonService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -24,6 +22,16 @@ public class PersonController {
     @GetMapping("/get-all")
     public List<PersonDTO> getAllPerson() {
         return personService.getAllPerson();
+    }
+
+    @GetMapping("/get-person/{id}")
+    public PersonDTO getPersonByID(@PathVariable Long id) {
+        return personService.getPersonById(id);
+    }
+
+    @PostMapping("/create-person")
+    public PersonDTO createPerson(@RequestBody PersonDTO personDTO) {
+        return personService.createPerson(personDTO);
     }
 
 

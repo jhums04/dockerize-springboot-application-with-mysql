@@ -9,7 +9,10 @@ import java.util.Objects;
 public class PersonMapper {
     public static PersonData personDtoToData(PersonDTO personDTO) {
         PersonData p = new PersonData();
-        p.setId(Objects.nonNull(personDTO.getId()) ? personDTO.getId() : null);
+
+        if (Objects.nonNull(personDTO.getId()))
+            p.setId(personDTO.getId());
+
         p.setFirstName(personDTO.getFirstName());
         p.setLastName(personDTO.getLastName());
         p.setAge(personDTO.getAge());
@@ -31,5 +34,9 @@ public class PersonMapper {
 
     public static PersonEntity personDataToEntity(PersonData personData) {
         return new PersonEntity(personData.getId(), personData.getFirstName(), personData.getLastName(), personData.getAge());
+    }
+
+    public static PersonDTO personEntityToDTO(PersonEntity savedPersonEntity) {
+        return new PersonDTO(savedPersonEntity.getId(), savedPersonEntity.getFirstName(), savedPersonEntity.getLastName(), savedPersonEntity.getAge());
     }
 }

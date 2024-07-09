@@ -9,9 +9,8 @@ import com.springboot_mysql_dockerize.dockerize_springboot_with_mysql.repository
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Collectors;
+import java.util.Objects;
 
 @Service
 public class PersonService {
@@ -33,5 +32,20 @@ public class PersonService {
         return personDTOS;
     }
 
+    public PersonDTO getPersonById(Long id) {
+        return personRepository.findById(id)
+                .map(PersonMapper::personEntityToData)
+                .map(PersonMapper::personDataToDTO)
+                .orElse(null);
+    }
 
+    public PersonDTO createPerson(PersonDTO personDTO) {
+        if (Objects.nonNull(personDTO.getFirstName()) && Objects.nonNull(personDTO.getLastName())) {
+            PersonData personData = PersonMapper.personDtoToData(personDTO);
+            PersonEntity personEntity = PersonMapper.personDataToEntity(personData);
+            PersonEntity savedPersonEntity = personRepository.save(personEntity);
+            return PersonMapper.personEntityToDTO(savedPersonEntity);
+        }
+        return new PersonDTO();
+    }
 }
