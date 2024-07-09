@@ -3,16 +3,16 @@ package com.springboot_mysql_dockerize.dockerize_springboot_with_mysql.entity;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NonNull;
+import lombok.*;
 
 import static jakarta.persistence.GenerationType.AUTO;
 
 @Entity
 @Data
 @Builder
-public class Person {
+@NoArgsConstructor
+@AllArgsConstructor
+public class PersonEntity {
 
     @Id
     @GeneratedValue(strategy = AUTO)
