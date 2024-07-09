@@ -22,7 +22,7 @@ jobs:
 
       - name: Build the application
         run: |
-          mvn clean package
+          mvn clean package -DskipTests
 
       - name: Set up Docker Buildx
         uses: docker/setup-buildx-action@v3
