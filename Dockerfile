@@ -1,10 +1,3 @@
-FROM openjdk:17-jdk
-
-# Copy the JAR package into the image
-COPY target/dockerize-springboot-with-mysql-0.0.1-SNAPSHOT.jar app.jar
-
-# Expose the application port
-EXPOSE 8080
-
-# Run the App
-ENTRYPOINT ["java", "-jar", "/app.jar"]
+FROM openjdk:8-alpine
+ADD target/*.jar app.jar
+ENTRYPOINT ["java","-jar","app.jar"]
